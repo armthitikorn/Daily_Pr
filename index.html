@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ตัวสร้างโปสเตอร์อบรม</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700;800&family=Caveat:wght@600&display=swap');
+*{box-sizing:border-box}
+body{margin:0;font-family:'Sarabun',sans-serif;background:#eef1f3;color:#222}
+.wrap{display:flex;gap:20px;padding:20px;max-width:1500px;margin:0 auto;align-items:flex-start;flex-wrap:wrap}
+.form{flex:1 1 340px;max-width:460px;background:#fff;border-radius:12px;padding:18px;box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.form h2{margin:0 0 12px;font-size:20px;color:#d71920}
+.form h3{margin:16px 0 6px;font-size:15px;color:#337ab7;border-bottom:1px solid #eee;padding-bottom:4px}
+.form label{display:block;font-size:13px;color:#555;margin-top:8px}
+.form input[type=text],.form textarea{width:100%;padding:9px;border:1px solid #ddd;border-radius:6px;font:inherit;font-size:15px}
+.form input[type=file]{width:100%;font-size:13px;margin-top:3px}
+button{background:#d71920;color:#fff;border:0;border-radius:8px;padding:12px;font:inherit;font-weight:700;font-size:16px;cursor:pointer;width:100%;margin-top:16px}
+.prev{flex:2 1 500px;min-width:300px}
+#fit{width:100%;position:relative}
+#stage{width:1024px;height:1280px;transform-origin:0 0;position:absolute;left:0;top:0}
+/* ===== poster ===== */
+#poster{position:relative;width:1024px;height:1280px;background:#fff;overflow:hidden;font-family:'Sarabun',sans-serif;color:#222}
+#poster .a{position:absolute}
+.red{color:#d71920}
+.shape{position:absolute;background:linear-gradient(135deg,#e8262d,#b3121a)}
+.circ{width:62px;height:62px;border-radius:50%;background:#d71920;color:#fff;display:flex;align-items:center;justify-content:center;font-size:30px;flex:none}
+.ic{position:absolute;width:90px;text-align:center;font-size:15px;line-height:1.15;font-weight:700;color:#444}
+.ic i{display:flex;width:60px;height:60px;margin:0 auto 6px;border:3px solid #d71920;border-radius:50%;align-items:center;justify-content:center;font-style:normal;font-size:28px;background:#fff}
+.ph{position:absolute;background:#ddd center/cover no-repeat;border:7px solid #fff;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.card{position:absolute;height:84px;border:2px solid #eee;border-radius:22px;background:#fff;box-shadow:0 3px 10px rgba(0,0,0,.08);display:flex;align-items:center;gap:14px;padding:0 16px;overflow:hidden}
+.card small{display:block;font-size:17px;color:#555;line-height:1}
+.card b{display:block;font-size:26px;line-height:1.15;font-weight:800;color:#222}
+.card span{white-space:pre-line}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="form">
+    <h2>🖼️ ตัวสร้างโปสเตอร์อบรม</h2>
+    <div id="fields"></div>
+    <h3>รูปภาพ</h3>
+    <label>รูปวิทยากร<input type="file" accept="image/*" data-img="trainer"></label>
+    <label>รูปบรรยากาศ 1<input type="file" accept="image/*" data-img="p1"></label>
+    <label>รูปบรรยากาศ 2<input type="file" accept="image/*" data-img="p2"></label>
+    <label>รูปบรรยากาศ 3<input type="file" accept="image/*" data-img="p3"></label>
+    <button id="dl">⬇️ ดาวน์โหลดเป็น PNG</button>
+  </div>
+
+  <div class="prev"><div id="fit"><div id="stage">
+  <div id="poster">
+    <!-- พื้นหลัง/รูปทรงสีแดง -->
+    <div class="shape" style="right:-40px;top:130px;width:300px;height:420px;clip-path:polygon(25% 0,100% 0,100% 100%,0 80%)"></div>
+    <div class="shape" style="left:-60px;bottom:-40px;width:760px;height:200px;clip-path:polygon(0 35%,100% 0,85% 100%,0 100%)"></div>
+    <div class="shape" style="left:-80px;top:560px;width:150px;height:140px;clip-path:polygon(0 0,100% 40%,0 100%);opacity:.9"></div>
+
+    <!-- หัว -->
+    <div class="a" style="left:42px;top:14px;font-size:38px;font-weight:800;color:#d71920;line-height:1">PRU <span style="font-weight:400;color:#333">ACADEMY</span></div>
+    <div class="a" style="left:44px;top:54px;font-size:17px;color:#333" data-k="tag"></div>
+    <div class="a" style="left:610px;top:26px;font-size:28px;font-weight:700;color:#d71920">🎓 <span data-k="org"></span></div>
+    <div class="a" style="left:895px;top:16px;font-size:14px;font-weight:800;color:#d71920;text-align:center;line-height:1.1">PRUDENTIAL<br><span style="font-weight:400;color:#333;font-size:12px">พรูเด็นเชียล ประกันชีวิต</span></div>
+
+    <!-- ชื่อเรื่อง -->
+    <div class="a" style="left:40px;top:104px;background:#d71920;color:#fff;font-size:34px;font-weight:800;font-style:italic;padding:2px 34px;border-radius:40px 8px 40px 8px" data-k="day"></div>
+    <div class="a" style="left:40px;top:160px;font-size:62px;font-weight:800;line-height:1.15;white-space:nowrap" data-k="t1"></div>
+    <div class="a red" style="left:36px;top:228px;font-size:76px;font-weight:800;font-style:italic;line-height:1.1;white-space:nowrap"><span data-k="t2a"></span> <span style="font-size:62px" data-k="t2b"></span></div>
+    <div class="a" style="left:206px;top:306px;width:380px;height:7px;background:#d71920;border-radius:50%"></div>
+
+    <!-- วิทยากร -->
+    <div class="a" style="left:560px;top:92px;width:440px;height:690px;background:#e9e9e9 center top/cover no-repeat;-webkit-mask-image:linear-gradient(#000 85%,transparent);mask-image:linear-gradient(#000 85%,transparent)" id="trainerPh"></div>
+    <div class="a" style="left:895px;top:130px;font-family:'Caveat',cursive;font-size:34px;color:#d71920;line-height:1.25;transform:rotate(-8deg);white-space:pre-line" data-k="motto"></div>
+    <div class="a" style="left:690px;top:495px;width:300px;height:90px;background:#d71920;clip-path:polygon(4% 0,100% 8%,96% 100%,0 88%);padding:12px 0 0 56px;font-family:'Caveat',cursive;color:#fff;line-height:1"><div style="font-size:28px;font-style:italic">Trainer</div><div style="font-size:46px;margin-top:-2px" data-k="trainer"></div></div>
+
+    <!-- ไอคอน -->
+    <div id="icons"></div>
+    <div class="a" style="left:488px;top:342px;font-family:'Caveat',cursive;font-size:32px;line-height:1.1;transform:rotate(-8deg);white-space:pre-line" data-k="steps"></div>
+
+    <!-- รูปบรรยากาศ -->
+    <div class="ph" id="p1" style="left:68px;top:474px;width:420px;height:262px;transform:rotate(-1deg)"></div>
+    <div class="ph" id="p3" style="left:500px;top:648px;width:385px;height:235px;transform:rotate(2deg)"></div>
+    <div class="ph" id="p2" style="left:122px;top:684px;width:310px;height:178px;transform:rotate(-1deg)"></div>
+
+    <!-- คำโปรย -->
+    <div class="a" style="left:38px;top:868px;font-size:56px;font-weight:800;color:#d71920;line-height:1">“</div>
+    <div class="a" style="left:78px;top:870px;width:460px;font-size:24px;line-height:1.35;white-space:pre-line;color:#222" data-k="quote"></div>
+
+    <!-- ข้อมูล -->
+    <div class="card" style="left:38px;top:942px;width:338px"><div class="circ">📅</div><div><small>Date</small><b><span data-k="date"></span></b></div></div>
+    <div class="card" style="left:388px;top:942px;width:300px"><div class="circ">🕒</div><div><small>Time</small><b data-k="time"></b></div></div>
+    <div class="card" style="left:700px;top:942px;width:286px"><div class="circ">👥</div><div><small>Pax</small><b data-k="pax"></b></div></div>
+    <div class="card" style="left:38px;top:1038px;width:230px"><div class="circ">📍</div><div><small>Place</small><b data-k="place"></b></div></div>
+    <div class="card" style="left:280px;top:1038px;width:214px"><div class="circ">👥</div><div><small>Audience</small><b data-k="aud"></b></div></div>
+    <div class="card" style="left:506px;top:1038px;width:230px"><div class="circ">🧑‍🏫</div><div><small>Trainer</small><b data-k="trainer"></b></div></div>
+    <div class="card" style="left:748px;top:1038px;width:238px"><div class="circ">📊</div><div><small>Category</small><b data-k="cat"></b></div></div>
+
+    <!-- ท้าย -->
+    <div class="a" style="left:58px;top:1172px;font-family:'Caveat',cursive;font-size:38px;color:#fff;line-height:1.1;transform:rotate(-6deg);white-space:pre-line" data-k="foot"></div>
+    <div class="a" style="left:610px;top:1160px;width:390px;display:flex;gap:10px;font-size:14px;font-weight:700;text-align:center;line-height:1.1" id="vals"></div>
+  </div></div></div></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+const F = [
+  ['หัวข้อทั่วไป'],
+  ['day','วัน (เช่น Day4)','Day4'],
+  ['t1','ชื่อหัวข้อบรรทัดบน','ความรู้ผลิตภัณฑ์'],
+  ['t2a','ชื่อหลัก (ตัวใหญ่)','PRU'],
+  ['t2b','ชื่อหลัก (ต่อท้าย)','Mhao Mhao'],
+  ['quote','คำโปรย (ขึ้นบรรทัดใหม่ได้)','เข้าใจผลิตภัณฑ์อย่างรอบด้าน\nนำเสนอได้มั่นใจ ปิดการขายได้อย่างมืออาชีพ','area'],
+  ['icons','ไอคอน 5 หัวข้อ (คั่นด้วย ,)','Product Knowledge, Product Features, Key Benefits, Customer Needs, Sales Ideas'],
+  ['steps','ขั้นตอน (ขึ้นบรรทัดใหม่ได้)','Know\nPresent\nConvince\nClose','area'],
+  ['รายละเอียดอบรม'],
+  ['date','วันที่','25 November 2026\n(Wednesday)','area'],
+  ['time','เวลา','09.00 - 17.00'],
+  ['pax','จำนวนคน','11'],
+  ['place','สถานที่','SYM'],
+  ['aud','กลุ่มเป้าหมาย','New TSRs'],
+  ['trainer','วิทยากร','Nawarat S.'],
+  ['cat','หมวดหมู่','Knowledge'],
+  ['ข้อความตกแต่ง'],
+  ['tag','สโลแกนใต้ PRU Academy','People · Skills · Better Tomorrow'],
+  ['org','ชื่อหน่วยงาน','DMTM Learning'],
+  ['motto','ข้อความข้างวิทยากร','Learn\nShare\nGrow\nTogether','area'],
+  ['foot','ข้อความมุมล่างซ้าย','Empower People\nBuild a Stronger Tomorrow','area'],
+  ['vals','ค่านิยมท้ายโปสเตอร์ (คั่นด้วย ,)','KNOWLEDGE FOR IMPACT, PEOPLE DEVELOPMENT, SUSTAINABLE GROWTH']
+];
+const ICONS = ['📖','🖥️','🛡️','👥','🎯'], VICONS = ['🎯','👥','💡'];
+const data = {};
+const box = document.getElementById('fields');
+F.forEach(f => {
+  if (f.length === 1) { box.insertAdjacentHTML('beforeend', '<h3>' + f[0] + '</h3>'); return; }
+  const [k, label, def, type] = f; data[k] = def;
+  const el = document.createElement('label'); el.textContent = label;
+  const inp = document.createElement(type === 'area' ? 'textarea' : 'input');
+  if (type === 'area') inp.rows = 2; else inp.type = 'text';
+  inp.value = def; inp.oninput = () => { data[k] = inp.value; render(); };
+  el.append(inp); box.append(el);
+});
+
+function render() {
+  document.querySelectorAll('[data-k]').forEach(e => { e.textContent = data[e.dataset.k] ?? ''; });
+  const labs = data.icons.split(',').map(s => s.trim()).slice(0, 5);
+  document.getElementById('icons').innerHTML = labs.map((t, i) =>
+    '<div class="ic" style="left:' + (30 + i * 100) + 'px;top:352px"><i>' + ICONS[i] + '</i>' + t + '</div>').join('');
+  document.getElementById('vals').innerHTML = data.vals.split(',').map((t, i) =>
+    '<div style="flex:1;color:#333"><div style="font-size:28px">' + (VICONS[i] || '⭐') + '</div>' + t.trim() + '</div>').join('');
+}
+render();
+
+// อัปโหลดรูป
+const target = { trainer: 'trainerPh', p1: 'p1', p2: 'p2', p3: 'p3' };
+document.querySelectorAll('[data-img]').forEach(inp => inp.onchange = () => {
+  const f = inp.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => { const t = document.getElementById(target[inp.dataset.img]); t.style.backgroundImage = 'url(' + r.result + ')'; };
+  r.readAsDataURL(f);
+});
+
+// ย่อพรีวิวให้พอดีหน้าจอ
+const fit = document.getElementById('fit'), stage = document.getElementById('stage');
+const resize = () => { const s = Math.min(1, fit.clientWidth / 1024); stage.style.transform = 'scale(' + s + ')'; fit.style.height = (1280 * s) + 'px'; };
+window.addEventListener('resize', resize); resize();
+
+// ดาวน์โหลด PNG
+document.getElementById('dl').onclick = async () => {
+  if (!window.html2canvas) return alert('โหลดตัวสร้างรูปไม่สำเร็จ กรุณาตรวจสอบอินเทอร์เน็ต');
+  const old = stage.style.transform; stage.style.transform = 'none';
+  try {
+    if (document.fonts) await document.fonts.ready;
+    const c = await html2canvas(document.getElementById('poster'), { scale: 2, useCORS: true, backgroundColor: '#fff' });
+    const a = document.createElement('a'); a.download = 'poster.png'; a.href = c.toDataURL('image/png'); a.click();
+  } catch (e) { alert('สร้างรูปไม่สำเร็จ: ' + e.message); }
+  stage.style.transform = old;
+};
+</script>
+</body>
+</html>
